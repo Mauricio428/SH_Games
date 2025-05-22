@@ -12,7 +12,7 @@ const juegos = {
   2: {
     titulo: "Resident Evil 2",
     descripcion: "Leon y Claire llegan a Raccoon City solo para descubrir un brote zombi que deben sobrevivir mientras descubren la verdad detrás de Umbrella.",
-    imagen: "docs/Portada RE2",
+    imagen: "docs/Portada RE2.jpg",
     descarga: "https://www.mediafire.com/file/me5kqmck03ovl8x/RE+2+1998www.randrogames.com.rar/file"
   },
   3: {
@@ -131,19 +131,19 @@ const juegos = {
   19: {
     titulo: "GTA San Andreas",
     descripcion: `La historia gira en torno a Carl "CJ" Johnson...`,
-    imagen: "docs/Portada gtaSA.jpg",
+    imagen: "docs/portada gtaSA.jpg",
     descarga: "https://www.mediafire.com/file/almwg0qp68322mk/Gta_San_Andreas_1.0.rar/file"
   },
   20: {
     titulo: "GTA Vice City",
     descripcion: `La historia de GTA: Vice City se centra en Tommy Vercetti...`,
-    imagen: "docs/Portada gtaVC.webp",
+    imagen: "docs/portada gtaVC.webp",
     descarga: "https://www.mediafire.com/file/2q021ts17gme02h/GTA_V1ce_C1ty_-_Ranloads.rar/file"
   },
   21: {
     titulo: "GTA III",
     descripcion: `GTA III sigue a Claude, un criminal traicionado...`,
-    imagen: "docs/Portada gtaIII.jpg",
+    imagen: "docs/portada gtaIII.jpg",
     descarga: "https://www.mediafire.com/file/mjajcls4q3hj21i/Gta_3_%252B_Silent_Patch.rar/file"
   },
   22: {
