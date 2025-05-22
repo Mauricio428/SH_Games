@@ -11,19 +11,43 @@ body {
 
 /* Fondo semitransparente desenfocado */
 .background-overlay {
+  /* Esto ya no se necesita */
+  display: none;
+}
+
+.video-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('docs/fondo-juego-futurista-azul-purpura_1128796-3333.avif');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.2;
-  filter: blur(8px);
+  object-fit: cover;
   z-index: -1;
+  opacity: 0.25; /* Puedes ajustar esto para que no opaque el contenido */
+  pointer-events: none; /* Asegura que el video no interfiera con clics */
 }
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2; /* Detrás de todo */
+  pointer-events: none;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Ajusta la transparencia aquí */
+  z-index: -1; /* Encima del video, debajo del contenido */
+}
+
 
 /* Encabezado */
 header {
@@ -76,4 +100,107 @@ header {
   font-weight: bold;
 }
 
+@keyframes borderRGB {
+  0% {
+    border-color: rgb(255, 0, 0);
+    box-shadow: 0 0 10px rgb(255, 0, 0);
+  }
+  10% {
+    border-color: rgb(255, 128, 0);
+    box-shadow: 0 0 10px rgb(255, 128, 0);
+  }
+  20% {
+    border-color: rgb(255, 255, 0);
+    box-shadow: 0 0 10px rgb(255, 255, 0);
+  }
+  30% {
+    border-color: rgb(128, 255, 0);
+    box-shadow: 0 0 10px rgb(128, 255, 0);
+  }
+  40% {
+    border-color: rgb(0, 255, 0);
+    box-shadow: 0 0 10px rgb(0, 255, 0);
+  }
+  50% {
+    border-color: rgb(0, 255, 128);
+    box-shadow: 0 0 10px rgb(0, 255, 128);
+  }
+  60% {
+    border-color: rgb(0, 255, 255);
+    box-shadow: 0 0 10px rgb(0, 255, 255);
+  }
+  70% {
+    border-color: rgb(0, 128, 255);
+    box-shadow: 0 0 10px rgb(0, 128, 255);
+  }
+  80% {
+    border-color: rgb(0, 0, 255);
+    box-shadow: 0 0 10px rgb(0, 0, 255);
+  }
+  90% {
+    border-color: rgb(128, 0, 255);
+    box-shadow: 0 0 10px rgb(128, 0, 255);
+  }
+  100% {
+    border-color: rgb(255, 0, 255);
+    box-shadow: 0 0 10px rgb(255, 0, 255);
+  }
+}
 
+
+
+.game-card:hover {
+  transform: scale(1.05);
+  border: 3px solid rgb(255, 0, 0);
+  animation: borderRGB 5s linear infinite;
+}
+
+
+.game-card {
+  background-color: rgba(44, 44, 44, 0.9);
+  width: 200px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  border: 3px solid transparent;
+}
+
+section h2 {
+  font-size: 22px;
+  color: #00ffcc;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+section ol {
+  max-width: 400px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px 25px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.saga-title {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 30px;
+  color: #00ffcc;
+  text-shadow: 0 0 5px #000;
+}
+
+.header-logo {
+  max-height: 100px;
+  object-fit: contain;
+}
+
+header {
+  background-color: transparent; /* o rgba(0,0,0,0.3) si quieres algo sutil */
+  padding: 20px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}

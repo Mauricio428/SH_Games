@@ -1,6 +1,6 @@
   // Función para validar si el juego existe o está disponible
     function validarId(id) {
-      return id <= 18; // Por ahora solo hay 4 juegos válidos
+      return id <= 100; // Por ahora solo hay 4 juegos válidos
     }
 
 // Asignar evento a cada tarjeta disponible
