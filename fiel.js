@@ -1,5 +1,5 @@
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameId = urlParams.get('id') || 1;
+const urlParams = new URLSearchParams(window.location.search);
+const gameId = urlParams.get('id') || 1;
 
 const juegos = {
   // 🧟‍♂️ SAGA RESIDENT EVIL
@@ -63,23 +63,21 @@ const juegos = {
     titulo: "Resident Evil 4 Remake",
     descripcion: "Remake con historia similar al original, pero con más profundidad en los personajes y escenas renovadas.",
     imagen: "docs/Portada RE$R.jpg",
-   descargas: [
-  { url: "https://www.mediafire.com/file/s9cgqtwlnap4s7n/Re42023www.randrogames.com.part1.rar/file", nombre: "Parte 1" },
-  { url: "https://www.mediafire.com/file/toy4chwbrdd0dx4/Re42023www.randrogames.com.part2.rar/file", nombre: "Parte 2" },
-  { url: "https://www.mediafire.com/file/9ego8n8yi7fkqed/Re42023www.randrogames.com.part3.rar/file", nombre: "Parte 3" },
-  { url: "https://www.mediafire.com/file/ibs04tdlu7a4f1q/Re42023www.randrogames.com.part4.rar/file", nombre: "Parte 4" },
-  { url: "https://www.mediafire.com/file/jyhyewxchwg7n58/Re42023www.randrogames.com.part5.rar/file", nombre: "Parte 5" },
-  { url: "https://www.mediafire.com/file/fjpc9273qy6mjm5/Re42023www.randrogames.com.part6.rar/file", nombre: "Parte 6" },
-  { url: "https://www.mediafire.com/file/8xb7hercb1uibl0/CrackFixRE4.rar/file", nombre: "Parte 7" }
-]
-
+    descargas: [
+      { url: "https://www.mediafire.com/file/s9cgqtwlnap4s7n/Re42023www.randrogames.com.part1.rar/file", nombre: "Parte 1" },
+      { url: "https://www.mediafire.com/file/toy4chwbrdd0dx4/Re42023www.randrogames.com.part2.rar/file", nombre: "Parte 2" },
+      { url: "https://www.mediafire.com/file/9ego8n8yi7fkqed/Re42023www.randrogames.com.part3.rar/file", nombre: "Parte 3" },
+      { url: "https://www.mediafire.com/file/ibs04tdlu7a4f1q/Re42023www.randrogames.com.part4.rar/file", nombre: "Parte 4" },
+      { url: "https://www.mediafire.com/file/jyhyewxchwg7n58/Re42023www.randrogames.com.part5.rar/file", nombre: "Parte 5" },
+      { url: "https://www.mediafire.com/file/fjpc9273qy6mjm5/Re42023www.randrogames.com.part6.rar/file", nombre: "Parte 6" },
+      { url: "https://www.mediafire.com/file/8xb7hercb1uibl0/CrackFixRE4.rar/file", nombre: "Parte 7" }
+    ]
   },
   10: {
     titulo: "Resident Evil 2 Remake",
     descripcion: "Nueva versión con gráficos modernos del clásico RE2, manteniendo la historia de Leon y Claire en Raccoon City.",
     imagen: "docs/Portada RE2R.jpg",
     descargas: [
-
       {url: "https://www.mediafire.com/file/ugoupsii9a3st7a/RE22_19www.randrogames.com.part1.rar/file",nombre: "parte 1"},
       {url: "https://www.mediafire.com/file/qauw98g0isjtzc7/RE22_19www.randrogames.com.part2.rar/file",nombre: "parte 2"}
     ]
@@ -89,7 +87,6 @@ const juegos = {
     descripcion: "Versión actualizada de la historia de Jill huyendo de Nemesis con nuevos detalles y escenarios.",
     imagen: "docs/Portada RE3R.jpg",
     descargas: [
-
       {url: "https://www.mediafire.com/file/9c9y28zv2qetaoc/re32020www.randrogames.com.part1.rar/file",nombre: "parte 1"},
       {url: "https://www.mediafire.com/file/ztnj6sncj2grkdm/re32020www.randrogames.com.part2.rar/file",nombre: "parte 2"}
     ]
@@ -183,8 +180,7 @@ const juegos = {
   }
 };
 
-
-    const juego = juegos[gameId] || juegos[1];
+const juego = juegos[gameId] || juegos[1];
 
 // Mostrar datos generales
 document.getElementById("gameTitle").textContent = juego.titulo;
@@ -228,12 +224,11 @@ if (juego.tutorial && juego.tutorial.includes("youtube.com")) {
   tutorialLabel.style.fontWeight = "bold";
   tutorialLabel.style.marginBottom = "10px";
 
-const tutorialButton = document.createElement("a");
-tutorialButton.href = juego.tutorial;
-tutorialButton.target = "_blank";
-tutorialButton.className = "download-button"; // 👈 Usa la clase correcta
-tutorialButton.textContent = "Ver tutorial";
-
+  const tutorialButton = document.createElement("a");
+  tutorialButton.href = juego.tutorial;
+  tutorialButton.target = "_blank";
+  tutorialButton.className = "download-button";
+  tutorialButton.textContent = "Ver tutorial";
 
   wrapper.appendChild(tutorialLabel);
   wrapper.appendChild(tutorialButton);
@@ -241,9 +236,121 @@ tutorialButton.textContent = "Ver tutorial";
 }
 
 if (window.innerWidth < 768) {
-  // móvil
   document.getElementById("gameImage").style.objectFit = "contain";
 }
 
+// =====================================================
+// Sistema de likes INDEPENDIENTE POR JUEGO
+// =====================================================
+const likeBtn = document.getElementById('likeBtn');
+const likeCount = document.getElementById('likeCount');
+const heartIcon = document.getElementById('heartIcon');
 
+// Usar claves únicas basadas en el ID del juego
+const likesKey = `gameLikes_${gameId}`;
+const hasLikedKey = `hasLiked_${gameId}`;
 
+let likes = parseInt(localStorage.getItem(likesKey)) || 0;
+let hasLiked = localStorage.getItem(hasLikedKey) === 'true';
+
+likeCount.textContent = likes;
+
+if (hasLiked) {
+  likeBtn.classList.add('liked');
+  heartIcon.textContent = '♥';
+}
+
+likeBtn.addEventListener('click', () => {
+  if (!hasLiked) {
+    likes++;
+    hasLiked = true;
+    likeBtn.classList.add('liked');
+    heartIcon.textContent = '♥';
+  } else {
+    likes--;
+    hasLiked = false;
+    likeBtn.classList.remove('liked');
+    heartIcon.textContent = '♡';
+  }
+  
+  localStorage.setItem(likesKey, likes);
+  localStorage.setItem(hasLikedKey, hasLiked);
+  likeCount.textContent = likes;
+});
+
+// =====================================================
+// Sistema de comentarios INDEPENDIENTE POR JUEGO
+// =====================================================
+const submitBtn = document.getElementById('submitComment');
+const userNameInput = document.getElementById('userName');
+const userCommentInput = document.getElementById('userComment');
+const commentsList = document.getElementById('commentsList');
+const commentCountSpan = document.getElementById('commentCount');
+
+// Usar clave única basada en el ID del juego
+const commentsKey = `gameComments_${gameId}`;
+let comments = JSON.parse(localStorage.getItem(commentsKey)) || [];
+
+function renderComments() {
+  if (comments.length === 0) {
+    commentsList.innerHTML = '<div class="no-comments">No hay comentarios aún. ¡Sé el primero en comentar!</div>';
+    commentCountSpan.textContent = '0';
+    return;
+  }
+  
+  commentCountSpan.textContent = comments.length;
+  commentsList.innerHTML = '';
+  
+  comments.forEach((comment, index) => {
+    const commentItem = document.createElement('div');
+    commentItem.className = 'comment-item';
+    commentItem.innerHTML = `
+      <div class="comment-header">
+        <span class="comment-author">${comment.name}</span>
+        <span class="comment-date">${comment.date}</span>
+      </div>
+      <div class="comment-text">${comment.text}</div>
+    `;
+    commentsList.appendChild(commentItem);
+  });
+}
+
+function deleteComment(index) {
+  if (confirm('¿Estás seguro de que quieres eliminar este comentario?')) {
+    comments.splice(index, 1);
+    localStorage.setItem(commentsKey, JSON.stringify(comments));
+    renderComments();
+  }
+}
+
+submitBtn.addEventListener('click', () => {
+  const name = userNameInput.value.trim();
+  const text = userCommentInput.value.trim();
+  
+  if (!name || !text) {
+    alert('Por favor, completa todos los campos');
+    return;
+  }
+  
+  const newComment = {
+    name: name,
+    text: text,
+    date: new Date().toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  };
+  
+  comments.unshift(newComment);
+  localStorage.setItem(commentsKey, JSON.stringify(comments));
+  
+  userNameInput.value = '';
+  userCommentInput.value = '';
+  
+  renderComments();
+});
+
+renderComments();;

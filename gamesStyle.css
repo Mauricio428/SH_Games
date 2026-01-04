@@ -1,206 +1,474 @@
-/* Fondo general del sitio */
+/* Overlay de fondo con imagen */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -1;
+  opacity: 0.3;
+  filter: brightness(0.4);
+}
+
+/* HTML y Body */
+html {
+  background: #000000 !important;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #121212;
-  color: white;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: transparent;
+  color: #f5f5f5;
   position: relative;
   min-height: 100vh;
   z-index: 0;
 }
 
-/* Fondo semitransparente desenfocado */
-.background-overlay {
-  /* Esto ya no se necesita */
-  display: none;
-}
-
-.video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 0.25; /* Puedes ajustar esto para que no opaque el contenido */
-  pointer-events: none; /* Asegura que el video no interfiera con clics */
-}
-
-.video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2; /* Detrás de todo */
-  pointer-events: none;
-}
-
+/* Ocultar solo el video */
+.video-background,
 .video-overlay {
-  position: fixed;
+  display: none !important;
+}
+
+/* Encabezado estilo Epic minimalista negro */
+header {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 28px;
+  z-index: 1;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.header-logo {
+  max-height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.8));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 30px rgba(255, 255, 255, 0.3));
+}
+
+/* === ESTILOS DE LA BARRA DE BÚSQUEDA === */
+.search-container {
+  max-width: 650px;
+  margin: 30px auto 0;
+  position: relative;
+  padding: 0 10px;
+}
+
+.search-container::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, 
+    rgba(0, 120, 242, 0.3) 0%, 
+    rgba(0, 180, 255, 0.3) 50%, 
+    rgba(120, 0, 242, 0.3) 100%);
+  border-radius: 14px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+.search-container:focus-within::before {
+  opacity: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 18px 55px 18px 55px;
+  font-size: 17px;
+  font-weight: 500;
+  background: linear-gradient(135deg, rgba(20, 20, 25, 0.95), rgba(15, 15, 20, 0.95));
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  letter-spacing: 0.3px;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+}
+
+.search-input:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: linear-gradient(135deg, rgba(25, 25, 30, 0.98), rgba(20, 20, 25, 0.98));
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.search-input:focus {
+  border-color: rgba(0, 120, 242, 0.8);
+  background: linear-gradient(135deg, rgba(30, 30, 40, 1), rgba(25, 25, 35, 1));
+  box-shadow: 
+    0 0 0 4px rgba(0, 120, 242, 0.2),
+    0 16px 48px rgba(0, 120, 242, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.search-icon {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.search-input:focus ~ .search-icon {
+  color: rgba(0, 120, 242, 1);
+  transform: translateY(-50%) scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(0, 120, 242, 0.6));
+}
+
+/* Animación sutil del icono */
+@keyframes searchPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.search-container:focus-within .search-icon {
+  animation: searchPulse 2s ease-in-out infinite;
+}
+
+/* Mensaje de no resultados */
+.no-results {
+  text-align: center;
+  padding: 80px 20px;
+  color: rgba(255, 255, 255, 0.6);
+  animation: fadeIn 0.4s ease;
+}
+
+.no-results svg {
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.no-results h3 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.no-results p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === FIN ESTILOS DE BÚSQUEDA === */
+
+/* Contenedor de tarjetas estilo Epic Grid */
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 30px;
+  padding: 40px 60px;
+  z-index: 1;
+  position: relative;
+  max-width: 1600px;
+  margin: 0 auto;
+  transition: opacity 0.3s ease;
+}
+
+/* Tarjeta individual estilo Epic minimalista negro */
+.game-card {
+  background: rgba(15, 15, 15, 0.7);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Ajusta la transparencia aquí */
-  z-index: -1; /* Encima del video, debajo del contenido */
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, transparent, transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-
-/* Encabezado */
-header {
-  background-color: #1f1f1f;
-  padding: 20px;
-  text-align: center;
-  font-size: 24px;
-  z-index: 1;
-  position: relative;
-}
-
-/* Contenedor de tarjetas */
-.game-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  z-index: 1;
-  position: relative;
-}
-
-/* Tarjeta individual */
-.game-card {
-  background-color: rgba(44, 44, 44, 0.9);
-  width: 200px;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-  transition: transform 0.3s;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
-}
-
-/* Animación al pasar el mouse */
+/* Animación al pasar el mouse - Estilo Epic */
 .game-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 120, 242, 0.4),
+              0 0 0 1px rgba(0, 120, 242, 0.5);
+  border-color: rgba(0, 120, 242, 0.6);
+}
+
+.game-card:hover::before {
+  opacity: 1;
+  background: linear-gradient(135deg, 
+    rgba(0, 120, 242, 0.4), 
+    rgba(0, 180, 255, 0.4));
+}
+
+/* Contenedor de imagen */
+.game-card > div:first-child {
+  position: relative;
+  overflow: hidden;
+  background: #000;
 }
 
 /* Imagen de cada juego */
 .game-card img {
   width: 100%;
-  border-radius: 6px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+  filter: brightness(0.85) saturate(1.1);
 }
 
-/* Título del juego */
+.game-card:hover img {
+  transform: scale(1.1);
+  filter: brightness(1) saturate(1.2);
+}
+
+/* Overlay de gradiente en la imagen */
+.game-card > div:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Título del juego minimalista negro */
 .game-title {
-  margin-top: 10px;
+  padding: 20px 15px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
+  color: #f5f5f5;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  text-align: left;
+  background: rgba(10, 10, 10, 0.9);
+  transition: color 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-@keyframes borderRGB {
-  0% {
-    border-color: rgb(255, 0, 0);
-    box-shadow: 0 0 10px rgb(255, 0, 0);
-  }
-  10% {
-    border-color: rgb(255, 128, 0);
-    box-shadow: 0 0 10px rgb(255, 128, 0);
-  }
-  20% {
-    border-color: rgb(255, 255, 0);
-    box-shadow: 0 0 10px rgb(255, 255, 0);
-  }
-  30% {
-    border-color: rgb(128, 255, 0);
-    box-shadow: 0 0 10px rgb(128, 255, 0);
-  }
-  40% {
-    border-color: rgb(0, 255, 0);
-    box-shadow: 0 0 10px rgb(0, 255, 0);
-  }
-  50% {
-    border-color: rgb(0, 255, 128);
-    box-shadow: 0 0 10px rgb(0, 255, 128);
-  }
-  60% {
-    border-color: rgb(0, 255, 255);
-    box-shadow: 0 0 10px rgb(0, 255, 255);
-  }
-  70% {
-    border-color: rgb(0, 128, 255);
-    box-shadow: 0 0 10px rgb(0, 128, 255);
-  }
-  80% {
-    border-color: rgb(0, 0, 255);
-    box-shadow: 0 0 10px rgb(0, 0, 255);
-  }
-  90% {
-    border-color: rgb(128, 0, 255);
-    box-shadow: 0 0 10px rgb(128, 0, 255);
-  }
-  100% {
-    border-color: rgb(255, 0, 255);
-    box-shadow: 0 0 10px rgb(255, 0, 255);
-  }
+.game-card:hover .game-title {
+  color: #ffffff;
 }
 
-
-
-.game-card:hover {
-  transform: scale(1.05);
-  border: 3px solid rgb(255, 0, 0);
-  animation: borderRGB 5s linear infinite;
-}
-
-
-.game-card {
-  background-color: rgba(44, 44, 44, 0.9);
-  width: 200px;
-  padding: 10px;
-  border-radius: 8px;
+/* Títulos de saga */
+.saga-title {
   text-align: center;
-  transition: transform 0.3s;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
-  border: 3px solid transparent;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 50px 0 30px;
+  color: #ffffff;
+  text-shadow: 0 2px 20px rgba(0, 120, 242, 0.5);
+  letter-spacing: -0.5px;
+  position: relative;
+  padding-bottom: 15px;
+  transition: opacity 0.3s ease;
+}
+
+.saga-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #0078f2, transparent);
+  border-radius: 2px;
+}
+
+/* Secciones */
+section {
+  margin: 40px 0;
+  position: relative;
+  z-index: 1;
 }
 
 section h2 {
-  font-size: 22px;
-  color: #00ffcc;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
 }
 
 section ol {
-  max-width: 400px;
+  max-width: 500px;
   margin: auto;
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 15px 25px;
-  border-radius: 10px;
+  background: rgba(10, 10, 10, 0.7);
+  padding: 25px 35px;
+  border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
-.saga-title {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 30px;
-  color: #00ffcc;
-  text-shadow: 0 0 5px #000;
+section ol li {
+  padding: 8px 0;
+  color: #d4d4d4;
+  line-height: 1.6;
 }
 
-.header-logo {
-  max-height: 100px;
-  object-fit: contain;
+/* Badge de descuento/oferta */
+.discount-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #0078f2 0%, #0056b3 100%);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 120, 242, 0.5);
 }
 
-header {
-  background-color: transparent; /* o rgba(0,0,0,0.3) si quieres algo sutil */
-  padding: 20px;
-  text-align: center;
-  z-index: 1;
-  position: relative;
+/* Responsivo para tablets */
+@media (max-width: 1024px) {
+  .game-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    padding: 30px 40px;
+  }
+  
+  .saga-title {
+    font-size: 28px;
+  }
+  
+  .search-container {
+    max-width: 90%;
+  }
 }
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+  header {
+    padding: 20px 15px;
+    font-size: 22px;
+  }
+  
+  .header-logo {
+    max-height: 80px;
+  }
+  
+  .search-container {
+    max-width: 100%;
+    margin: 20px auto 0;
+  }
+  
+  .search-input {
+    padding: 14px 45px 14px 16px;
+    font-size: 15px;
+  }
+  
+  .game-container {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 20px 15px;
+  }
+  
+  .game-card:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+  
+  .game-title {
+    padding: 15px 12px;
+    font-size: 14px;
+  }
+  
+  .saga-title {
+    font-size: 24px;
+    margin: 35px 0 20px;
+  }
+  
+  section h2 {
+    font-size: 20px;
+  }
+  
+  section ol {
+    padding: 20px 25px;
+    max-width: 90%;
+  }
+}
+
+/* Animación de entrada suave */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.game-card {
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.game-card:nth-child(1) { animation-delay: 0.05s; }
+.game-card:nth-child(2) { animation-delay: 0.1s; }
+.game-card:nth-child(3) { animation-delay: 0.15s; }
+.game-card:nth-child(4) { animation-delay: 0.2s; }
+.game-card:nth-child(5) { animation-delay: 0.25s; }
+.game-card:nth-child(6) { animation-delay: 0.3s; }

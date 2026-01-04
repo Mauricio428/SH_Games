@@ -4,32 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Detalles del Juego</title>
-<link rel="stylesheet" href="file.css">
+  <link rel="stylesheet" href="file.css">
 </head>
-<body>
-<div class="background-overlay" id="backgroundOverlay"></div>
-
 <body>
   <div class="background-overlay" id="backgroundOverlay"></div>
 
-</body>
+  <div class="container">
+    <div class="game-card">
+      <div class="game-image">
+        <img id="gameImage" src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800" alt="Carátula del juego">
+      </div>
+      <div class="game-info">
+        <h1 id="gameTitle">Nombre del Juego</h1>
+        <p id="gameDescription">Descripción del juego aparecerá aquí. Este es un ejemplo de cómo se verá la información del juego en la página.</p>
 
-<div class="content">
-  <div class="game-image">
-    <img id="gameImage" src="" alt="Carátula del juego">
+        <div class="like-section">
+          <button class="like-button" id="likeBtn">
+            <span id="heartIcon">♡</span>
+            <span>Me gusta</span>
+          </button>
+          <span class="like-count"><span id="likeCount">0</span> likes</span>
+        </div>
+
+        <div id="downloadLinks" class="download-buttons-container">
+          <a href="#" class="download-button">Descargar Versión 1</a>
+          <a href="#" class="download-button">Descargar Versión 2</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="comments-section">
+      <div class="comments-header">
+        <h2>Comentarios</h2>
+        <span class="comments-count"><span id="commentCount">0</span> comentarios</span>
+      </div>
+
+      <div class="comment-form">
+        <div class="comment-input-group">
+          <label for="userName">Nombre</label>
+          <input type="text" id="userName" placeholder="Tu nombre" required>
+        </div>
+        <div class="comment-input-group">
+          <label for="userComment">Comentario</label>
+          <textarea id="userComment" placeholder="Escribe tu comentario aquí..." required></textarea>
+        </div>
+        <button class="submit-comment-btn" id="submitComment">Publicar comentario</button>
+      </div>
+
+      <div class="comments-list" id="commentsList">
+        <div class="no-comments">No hay comentarios aún. ¡Sé el primero en comentar!</div>
+      </div>
+    </div>
   </div>
-  <div class="game-info">
-    <h1 id="gameTitle">Cargando...</h1>
-    <p id="gameDescription"></p>
-
-    <!-- Aquí se generarán los botones -->
-    <div id="downloadLinks" class="download-buttons-container"></div>
-  </div>
-</div>
-
 
   <script src="fiel.js"></script>
-
 </body>
 </html>
-

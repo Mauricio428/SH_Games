@@ -1,170 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
+  
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Snake Games</title>
+  <link rel="stylesheet" href="gamesStyle.css">
 </head>
 <body>
 
-  <video autoplay muted loop playsinline class="video-background">
-  <source src="docs/Fondo pagina.mp4" type="video/mp4">
-  Tu navegador no soporta videos en HTML5.
-</video>
-<div class="video-overlay"></div>
-
-
-  <div class="background-overlay"></div>
-<link rel="stylesheet" href="gamesStyle.css">
+<!-- ⬇️ AQUÍ PONES LA RUTA DE TU IMAGEN DE FONDO ⬇️ -->
+<div class="background-overlay" style="background-image: url('docs/Fondo.jpg');"></div>
 
 <header>
   <img src="docs/Logo.jpg.png" alt="Snake Games Logo" class="header-logo">
+  
+  <!-- BARRA DE BÚSQUEDA -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      id="searchInput" 
+      class="search-input" 
+      placeholder="Buscar juegos..."
+      autocomplete="off"
+    >
+    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+  </div>
 </header>
 
-<section style="padding: 20px;">
-  <h2>Sagas incluidas</h2>
-  <ol style="line-height: 1.8;">
-    <li>Saga Resident Evil</li>
-    <li>Geometry Dash</li>
-    <li>Left 4 Dead</li>
-    <li>Hollow Knight</li>
-    <li>Spartan Total Warrior</li>
-    <li>Grand Theft Auto (GTA)</li>
-    <li>Manhunt</li>
-  </ol>
-</section>
 
- <div>
- <title>Saga Resident Evil</title>
- </div>
- <!-- Saga Resident Evil -->
-<h2 class="saga-title">Saga Resident Evil</h2>
-<div class="game-container">
-  <div class="game-card" data-id="1">
+<!-- Saga Resident Evil -->
+<h2 class="saga-title" data-saga="resident-evil">Saga Resident Evil</h2>
+<div class="game-container" data-saga="resident-evil">
+  <div class="game-card" data-id="1" data-title="resident evil zero">
     <img src="docs/portada REZero.jpg" alt="juego 1">
     <div class="game-title">Resident Evil Zero</div>
   </div>
-  <div class="game-card" data-id="2">
+  <div class="game-card" data-id="2" data-title="resident evil 2">
     <img src="docs/Portada RE2.jpg" alt="juego 2">
     <div class="game-title">Resident Evil 2</div>
   </div>
-  <div class="game-card" data-id="3">
+  <div class="game-card" data-id="3" data-title="resident evil 3 nemesis">
     <img src="docs/Portada RE3.jpg" alt="juego 3">
     <div class="game-title">Resident Evil 3 Nemesis</div>
   </div>
-  <div class="game-card" data-id="4">
+  <div class="game-card" data-id="4" data-title="resident evil 4">
     <img src="docs/RE4.png" alt="juego 4">
     <div class="game-title">Resident Evil 4</div>
   </div>
 </div>
 
-<div class="game-container">
-   <div class="game-card" data-id="5">
+<div class="game-container" data-saga="resident-evil">
+   <div class="game-card" data-id="5" data-title="resident evil 5">
     <img src="docs/Portada RE5.jpg" alt="juego 5">
     <div class="game-title">Resident Evil 5</div>
   </div>
-  <div class="game-card" data-id="6">
+  <div class="game-card" data-id="6" data-title="resident evil 6">
     <img src="docs/Portada RE6.jpg" alt="juego 6">
     <div class="game-title">Resident Evil 6</div>
   </div>
-  <div class="game-card" data-id="7">
+  <div class="game-card" data-id="7" data-title="resident evil 7">
     <img src="docs/Portada RE7.jpg" alt="juego 7">
     <div class="game-title">Resident Evil 7</div>
   </div>
-  <div class="game-card" data-id="8">
+  <div class="game-card" data-id="8" data-title="resident evil 8">
     <img src="docs/Portada RE8.jpg" alt="juego 8">
     <div class="game-title">Resident Evil 8</div>
   </div>
 </div>
 
-<div class="game-container">
-   <div class="game-card" data-id="9">
+<div class="game-container" data-saga="resident-evil">
+   <div class="game-card" data-id="9" data-title="resident evil 4 remake">
     <img src="docs/Portada RE$R.jpg" alt="juego 9">
     <div class="game-title">Resident Evil 4 Remake</div>
   </div>
-  <div class="game-card" data-id="10">
+  <div class="game-card" data-id="10" data-title="resident evil 2 remake">
     <img src="docs/Portada RE2R.jpg" alt="juego 10">
     <div class="game-title">Resident Evil 2 Remake</div>
   </div>
-  <div class="game-card" data-id="11">
+  <div class="game-card" data-id="11" data-title="resident evil 3 remake">
     <img src="docs/Portada RE3R.jpg" alt="juego 12">
     <div class="game-title">Resident Evil 3 Remake</div>
   </div>
 </div>
 
 <!-- Otros juegos -->
-<h2 class="saga-title">Otros Juegos</h2>
-<div class="game-container">
-  <div class="game-card" data-id="13">
+<h2 class="saga-title" data-saga="otros">Otros Juegos</h2>
+<div class="game-container" data-saga="otros">
+  <div class="game-card" data-id="13" data-title="geometry dash">
     <img src="docs/Geometry Dash Portada.jpg" alt="juego 14">
     <div class="game-title">Geometry Dash</div>
   </div>
-  <div class="game-card" data-id="15">
+  <div class="game-card" data-id="15" data-title="left 4 dead 2">
     <img src="docs/portada left4dead2.jpg" alt="juego 15">
     <div class="game-title">Left 4 Dead 2</div>
   </div>
-  <div class="game-card" data-id="16">
+  <div class="game-card" data-id="16" data-title="hollow knight">
     <img src="docs/portada Hk.jpg" alt="juego 16">
     <div class="game-title">Hollow Knight</div>
   </div>
 </div>
 
 <!-- Spartan Total Warrior -->
-<h2 class="saga-title">Spartan Total Warrior</h2>
-<div class="game-container">
-  <div class="game-card" data-id="17">
+<h2 class="saga-title" data-saga="spartan">Spartan Total Warrior</h2>
+<div class="game-container" data-saga="spartan">
+  <div class="game-card" data-id="17" data-title="spartan total warrior">
     <img src="docs/portada STW.jpg" alt="juego 18">
     <div class="game-title">Spartan Total Warrior</div>
   </div>
 </div>
 
 <!-- Grand Theft Auto (GTA) -->
-<h2 class="saga-title">Saga Grand Theft Auto (GTA)</h2>
-<div class="game-container">
-  <div class="game-card" data-id="19">
+<h2 class="saga-title" data-saga="gta">Saga Grand Theft Auto (GTA)</h2>
+<div class="game-container" data-saga="gta">
+  <div class="game-card" data-id="19" data-title="gta san andreas">
     <img src="docs/portada gtaSA.jpg" alt="juego 19">
     <div class="game-title">GTA San Andreas</div>
   </div>
-  <div class="game-card" data-id="20">
+  <div class="game-card" data-id="20" data-title="gta vice city">
     <img src="docs/portada gtaVC.webp" alt="juego 20">
     <div class="game-title">GTA Vice City</div>
   </div>
-  <div class="game-card" data-id="21">
+  <div class="game-card" data-id="21" data-title="gta iii gta 3">
     <img src="docs/portada gtaIII.jpg" alt="juego 21">
     <div class="game-title">GTA III</div>
   </div>
-  <div class="game-card" data-id="22">
+  <div class="game-card" data-id="22" data-title="gta iv gta 4">
     <img src="docs/Portada GTA4.jpg.jpg" alt="juego 22">
     <div class="game-title"> GTA IV</div>
-
   </div>
 </div>
-<div class="game-container">
-  <div class="game-card" data-id="23">
+<div class="game-container" data-saga="gta">
+  <div class="game-card" data-id="23" data-title="gta v gta 5">
     <img src="docs/Portada GTA5.jpg" alt="juego 23">
     <div class="game-title">GTA V</div>
   </div>
 </div>
 
 <!-- Manhunt -->
-<h2 class="saga-title">Saga Manhunt</h2>
-<div class="game-container">
-  <div class="game-card" data-id="24">
+<h2 class="saga-title" data-saga="manhunt">Saga Manhunt</h2>
+<div class="game-container" data-saga="manhunt">
+  <div class="game-card" data-id="24" data-title="manhunt">
     <img src="docs/Manhunt Portada.jpg" alt="juego 24">
     <div class="game-title">Manhunt</div>
   </div>
-  <div class="game-card" data-id="25">
+  <div class="game-card" data-id="25" data-title="manhunt 2">
     <img src="docs/Manhunt 2 Portada.jpg" alt="juego 25">
     <div class="game-title">Manhunt 2</div>
   </div>
 </div>
 
+<!-- Mensaje cuando no hay resultados -->
+<div id="noResults" class="no-results" style="display: none;">
+  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="11" cy="11" r="8"></circle>
+    <path d="m21 21-4.35-4.35"></path>
+  </svg>
+  <h3>No se encontraron juegos</h3>
+  <p>Intenta con otro término de búsqueda</p>
+</div>
 
-
-  <script src="games.js"></script>
-   
-  
-
+<script src="games.js"></script>
 
 </body>
 </html>
